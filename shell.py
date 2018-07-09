@@ -23,8 +23,8 @@ def battle(name_1, stats_1, name_2, stats_2):
     if action.lower() == 'attack':
         core.attack(stats_1, stats_2)
         print('{}\'s health is now at {}'.format(name_2, stats_2['Health']))
-
-
+    if action.lower == 'heal':
+        
 def main():
     (name_1, stats_1, name_2, stats_2) = intro()
     battle(name_1, stats_1, name_2, stats_2)
