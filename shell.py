@@ -1,12 +1,40 @@
 import core
 
 
+def classes(name):
+    incorrect = 0
+    while True:
+        if incorrect == 5:
+            print('STOP THAT AND CHOOSE!!!')
+        if incorrect == 10:
+            print('YOU DO NOT WANT THIS!!!')
+        if incorrect >= 15:
+            print(
+                '{} Has Summoned Forth The Destroyer of Worlds to Fullfill His Blood Lust!!!'.
+                format(name.capitalize()))
+            return core.new_gladiator(1000, 1000, 1000, 1000)
+        choice = input(
+            '\nWhat class will you choose {}?\n\n>>> Berserker\nPros: High Attack and Rage \nCons: Low Health and Chance To Graze\n\n>>> Monk\nPros: High Health and Precision Attacks \nCons: Low Rage and Weak Attacks\n\n>>> Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> Jester\nPros: Chance To Kill In Hit \nCons: Very Weak Health and Low Rage\n'.
+            format(name.capitalize()))
+        if choice.lower() == 'berserker':
+            return core.new_gladiator(65, 50, 1, 51)
+        elif choice.lower() == 'monk':
+            return core.new_gladiator(100, 0, 15, 15)
+        elif choice.lower() == 'warrior':
+            return core.new_gladiator(75, 15, 5, 31)
+        elif choice.lower() == 'jester':
+            return core.new_gladiator(25, 0, 1, 101)
+        else:
+            incorrect = incorrect + 1
+            print('\nChoose A Class {}!!!'.format(name.capitalize()))
+
+
 def intro():
     name_1 = input(
         'Welcome to the colosseum! Warrior one, what is your name? ')
     name_2 = input('\nWarrior two, what shall the crowds shout? ')
-    stats_1 = core.new_gladiator(100, 0, 5, 16)
-    stats_2 = core.new_gladiator(100, 0, 5, 16)
+    stats_1 = classes(name_1)
+    stats_2 = classes(name_2)
     return name_1, stats_1, name_2, stats_2
 
 
@@ -46,7 +74,7 @@ def battle(attacker, attacker_stats, defender, defender_stats):
             break
         if action.lower() == 'quit':
             print(
-                'You lay down your weapons and ask for mercy from your opponent.\n'
+                '\nYou lay down your weapons and ask for mercy from your opponent.\n'
             )
             print('{} Is Victorious!!!'.format(defender.capitalize()))
             exit()
