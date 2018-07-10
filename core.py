@@ -12,29 +12,24 @@ def new_gladiator(health, rage, damage_low, damage_high):
 
 def attack(attacker, defender):
     if attacker['Rage'] == 0:
-        for randint in range(attacker['Damage Low'], attacker['Damage High']):
-            attack = randint
-            defender['Health'] = defender['Health'] - attack
-            attacker['Rage'] = attacker['Rage'] + 15
-            return defender['Health']
+        defender['Health'] = defender['Health'] - randint(
+            attacker['Damage Low'], attacker['Damage High'])
+        attacker['Rage'] = attacker['Rage'] + 15
+        return defender['Health']
 
     if attacker['Rage'] > 0:
-        for randint in range(1, 100):
-            if randint <= attacker['Rage']:
-                for randint in range(attacker['Damage Low'],
-                                     attacker['Damage High']):
-                    attack = randint * 2
-                    defender['Health'] = defender['Health'] - attack
-                    attacker['Rage'] = 0
-                    return defender['Health']
+        if randint(1, 100) <= attacker['Rage']:
+            defender['Health'] = defender['Health'] - (
+                randint(attacker['Damage Low'], attacker['Damage High']) * 2)
+            attacker['Rage'] = 0
+            print('\nCritical Hit!!!')
+            return defender['Health']
 
         else:
-            for randint in range(attacker['Damage Low'],
-                                 attacker['Damage High']):
-                attack = randint
-                defender['Health'] = defender['Health'] - attack
-                attacker['Rage'] = attacker['Rage'] + 15
-                return defender['Health']
+            defender['Health'] = defender['Health'] - randint(
+                attacker['Damage Low'], attacker['Damage High'])
+            attacker['Rage'] = attacker['Rage'] + 15
+            return defender['Health']
 
 
 def heal(gladiator):
@@ -56,3 +51,5 @@ def heal(gladiator):
 def is_dead(gladiator):
     if gladiator['Health'] <= 0:
         return True
+    else:
+        return False

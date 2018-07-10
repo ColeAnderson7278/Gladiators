@@ -75,4 +75,4 @@ def test_is_dead():
         'Rage': 0,
         'Damage Low': 5,
         'Damage High': 25
-    }) == None
+    }) == False

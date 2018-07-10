@@ -4,30 +4,59 @@ import core
 def intro():
     name_1 = input(
         'Welcome to the colosseum! Warrior one, what is your name? ')
-    name_1 = name_1.capitalize()
     name_2 = input('\nWarrior two, what shall the crowds shout? ')
-    name_2 = name_2.capitalize()
-    stats_1 = core.new_gladiator(100, 0, 5, 25)
-    stats_2 = core.new_gladiator(100, 0, 5, 25)
-    print('{} - Health:{} Rage:{}'.format(name_1, stats_1['Health'],
-                                          stats_1['Rage']))
-    print('{} - Health:{} Rage:{}\n'.format(name_2, stats_2['Health'],
-                                            stats_2['Rage']))
+    stats_1 = core.new_gladiator(100, 0, 5, 16)
+    stats_2 = core.new_gladiator(100, 0, 5, 16)
     return name_1, stats_1, name_2, stats_2
 
 
-def battle(name_1, stats_1, name_2, stats_2):
-    action = input(
-        '{},what would you like to do?\n>>>Attack\n>>>Heal\n>>>Pass\n>>>Quit\n'.
-        format(name_1))
-    if action.lower() == 'attack':
-        core.attack(stats_1, stats_2)
-        print('{}\'s health is now at {}'.format(name_2, stats_2['Health']))
-    if action.lower == 'heal':
-        
+def battle(attacker, attacker_stats, defender, defender_stats):
+    while True:
+        print('\n{} - Health:{} Rage:{}'.format(attacker.capitalize(),
+                                                attacker_stats['Health'],
+                                                attacker_stats['Rage']))
+        print('{} - Health:{} Rage:{}\n'.format(defender.capitalize(),
+                                                defender_stats['Health'],
+                                                defender_stats['Rage']))
+        action = input(
+            '{},what would you like to do?\n>>>Attack\n>>>Heal\n>>>Pass\n>>>Quit\n'.
+            format(attacker.capitalize()))
+        if action.lower() == 'attack':
+            core.attack(attacker_stats, defender_stats)
+            #print('{}\'s health is now at {}.\n'.format(
+            #    defender.capitalize(), defender_stats['Health']))
+            break
+        if action.lower() == 'heal':
+            core.heal(attacker_stats)
+            #print('{}\'s health is now {}.\n'.format(attacker.capitalize(),
+            #                                         attacker_stats['Health']))
+            break
+        if action.lower() == 'pass':
+            print('You\'ve chosen to show mercy upon your enemy.\n')
+            break
+        if action.lower() == 'quit':
+            print(
+                'You lay down your weapons and ask for mercy from your opponent.\n'
+            )
+            print('{} Is Victorious!!!'.format(defender.capitalize()))
+            exit()
+
+
+def winner(name_1, stats_1, name_2, stats_2):
+    if core.is_dead(stats_1) == True:
+        print('{} Is Victorious!!!'.format(name_2.capitalize()))
+        exit()
+    if core.is_dead(stats_2) == True:
+        print('{} Is Victorious!!!'.format(name_1.capitalize()))
+        exit()
+
+
 def main():
     (name_1, stats_1, name_2, stats_2) = intro()
-    battle(name_1, stats_1, name_2, stats_2)
+    while core.is_dead(stats_1) == None or core.is_dead(stats_2) == None:
+        battle(name_1, stats_1, name_2, stats_2)
+        battle(name_2, stats_2, name_1, stats_1)
+    winner(name_1, stats_1, name_2, stats_2)
 
 
 if __name__ == '__main__':
