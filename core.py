@@ -48,6 +48,13 @@ def heal(gladiator):
     else:
         return None
 
+def cast(attacker, attacker_stats, defender, defender_stats):
+    if gladiator['Magic'] >= 5:
+        defender['Health'] = defender['Health'] - 10
+        attacker['Health'] = attacker['Health'] + 10
+        print('{} Has Absorbed Your Life Force!!!'.format(attacker)
+    else:
+        return None
 
 def is_dead(gladiator):
     if gladiator['Health'] <= 0:
