@@ -36,10 +36,13 @@ def battle(attacker, attacker_stats, defender, defender_stats):
             core.attack(attacker_stats, defender_stats)
             break
         if action.lower() == 'heal':
-            core.heal(attacker_stats)
-            break
+            if core.heal(attacker_stats) == None:
+                print('\nYou Can Not Complete That Action!!!')
+            else:
+                core.heal(attacker_stats)
+                break
         if action.lower() == 'pass':
-            print('You\'ve chosen to show mercy upon your enemy.\n')
+            print('\nYou\'ve chosen to show mercy upon your enemy.\n')
             break
         if action.lower() == 'quit':
             print(
