@@ -1,12 +1,13 @@
 from random import randint
 
 
-def new_gladiator(health, rage, damage_low, damage_high):
+def new_gladiator(health, rage, damage_low, damage_high, magic):
     return {
         'Health': health,
         'Rage': rage,
         'Damage Low': damage_low,
-        'Damage High': damage_high
+        'Damage High': damage_high,
+        'Magic': magic
     }
 
 
@@ -46,20 +47,6 @@ def heal(gladiator):
             return gladiator
     else:
         return None
-
-
-def gladiator_classes(choice):
-    if choice.lower() == 'berserker':
-        return new_gladiator(65, 50, 1, 51)
-    elif choice.lower() == 'monk':
-        return new_gladiator(100, 0, 15, 15)
-    elif choice.lower() == 'warrior':
-        return new_gladiator(75, 15, 5, 31)
-    elif choice.lower() == 'jester':
-        return new_gladiator(25, 0, 1, 101)
-    else:
-        incorrect = incorrect + 1
-        print('\nChoose A Class {}!!!'.format(name.capitalize()))
 
 
 def is_dead(gladiator):

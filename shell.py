@@ -21,9 +21,19 @@ def classes(name):
     while True:
         destroyer(incorrect, name)
         choice = input(
-            '\nWhat class will you choose {}?\n\n>>> Berserker\nPros: High Attack and Rage \nCons: Low Health and Chance To Graze\n\n>>> Monk\nPros: High Health and Precision Attacks \nCons: Low Rage and Weak Attacks\n\n>>> Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> Jester\nPros: Chance To Kill In Hit \nCons: Very Weak Health and Low Rage\n'.
+            '\nWhat class will you choose {}?\n\n>>> Berserker\nPros: High Attack and Rage \nCons: Chance To Graze and No Magic\n\n>>> Monk\nPros: High Health,Precision Attacks, and High Magic\nCons: Low Rage and Weak Attacks\n\n>>> Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> Jester\nPros: Chance To Kill In A Single Blow and Fair Magic \nCons: Very Weak Health and Low Rage\n'.
             format(name.capitalize()))
-        core.gladiator_classes(choice)
+        if choice.lower() == 'berserker':
+            return new_gladiator(75, 50, 1, 51, 0)
+        elif choice.lower() == 'monk':
+            return new_gladiator(100, 0, 15, 15, 15)
+        elif choice.lower() == 'warrior':
+            return new_gladiator(75, 15, 5, 31, 5)
+        elif choice.lower() == 'jester':
+            return new_gladiator(25, 0, 1, 101, 10)
+        else:
+            incorrect = incorrect + 1
+            print('\nChoose A Class {}!!!'.format(name.capitalize()))
 
 
 def intro():
@@ -36,8 +46,8 @@ def intro():
 
 
 def display_stats(name, stats):
-    print('\n>>> {} - Health:{} Rage:{}'.format(
-        name.capitalize(), stats['Health'], stats['Rage']))
+    print('\n>>> {} - Health:{} Rage:{} Magic:{}'.format(
+        name.capitalize(), stats['Health'], stats['Rage'], stats['Magic']))
 
 
 def check_the_dead(attacker, attacker_stats, defender, defender_stats):

@@ -2,23 +2,26 @@ from core import *
 
 
 def test_new_gladiator():
-    assert new_gladiator(55, 35, 5, 25) == ({
+    assert new_gladiator(55, 35, 5, 25, 10) == ({
         'Health': 55,
         'Rage': 35,
         'Damage Low': 5,
-        'Damage High': 25
+        'Damage High': 25,
+        'Magic': 10
     })
-    assert new_gladiator(100, 0, 5, 25) == ({
+    assert new_gladiator(100, 0, 5, 25, 5) == ({
         'Health': 100,
         'Rage': 0,
         'Damage Low': 5,
-        'Damage High': 25
+        'Damage High': 25,
+        'Magic': 5
     })
-    assert new_gladiator(0, 0, 0, 0) == ({
+    assert new_gladiator(0, 0, 0, 0, 0) == ({
         'Health': 0,
         'Rage': 0,
         'Damage Low': 0,
-        'Damage High': 0
+        'Damage High': 0,
+        'Magic': 0
     })
 
 
@@ -76,10 +79,3 @@ def test_is_dead():
         'Damage Low': 5,
         'Damage High': 25
     }) == False
-
-
-def test_gladiator_classes():
-    assert gladiator_classes('berserker') == new_gladiator(65, 50, 1, 51)
-    assert gladiator_classes('monk') == new_gladiator(100, 0, 15, 15)
-    assert gladiator_classes('warrior') == new_gladiator(75, 15, 5, 31)
-    assert gladiator_classes('jester') == new_gladiator(25, 0, 1, 101)
