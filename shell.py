@@ -5,12 +5,16 @@ def intro():
     name_1 = input(
         'Welcome to the colosseum! Warrior one, what is your name? ')
     name_2 = input('\nWarrior two, what shall the crowds shout? ')
-    stats_1 = core.new_gladiator(100, 0, 5, 16)
+    stats_1 = core.new_gladiator(100, 0, 100, 100)
     stats_2 = core.new_gladiator(100, 0, 5, 16)
     return name_1, stats_1, name_2, stats_2
 
 
 def battle(attacker, attacker_stats, defender, defender_stats):
+    if core.is_dead(attacker_stats) == True:
+        winner(attacker, attacker_stats, defender, defender_stats)
+    if core.is_dead(defender_stats) == True:
+        winner(name_1, stats_1, name_2, stats_2)
     while True:
         print('\n{} - Health:{} Rage:{}'.format(attacker.capitalize(),
                                                 attacker_stats['Health'],
@@ -44,19 +48,17 @@ def battle(attacker, attacker_stats, defender, defender_stats):
 
 def winner(name_1, stats_1, name_2, stats_2):
     if core.is_dead(stats_1) == True:
-        print('{} Is Victorious!!!'.format(name_2.capitalize()))
+        print('\n{} Is Victorious!!!'.format(name_2.capitalize()))
         exit()
     if core.is_dead(stats_2) == True:
-        print('{} Is Victorious!!!'.format(name_1.capitalize()))
+        print('\n{} Is Victorious!!!'.format(name_1.capitalize()))
         exit()
 
 
 def main():
     (name_1, stats_1, name_2, stats_2) = intro()
-    while core.is_dead(stats_1) == None or core.is_dead(stats_2) == None:
-        battle(name_1, stats_1, name_2, stats_2)
-        battle(name_2, stats_2, name_1, stats_1)
-    winner(name_1, stats_1, name_2, stats_2)
+    battle(name_1, stats_1, name_2, stats_2)
+    battle(name_2, stats_2, name_1, stats_1)
 
 
 if __name__ == '__main__':
