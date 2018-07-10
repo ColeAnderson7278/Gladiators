@@ -26,11 +26,11 @@ def classes(name):
         if choice.lower() == 'berserker':
             return core.new_gladiator(75, 50, 1, 51, 0)
         elif choice.lower() == 'monk':
-            return core.new_gladiator(100, 0, 15, 15, 15)
+            return core.new_gladiator(100, 0, 15, 15, 30)
         elif choice.lower() == 'warrior':
-            return core.new_gladiator(75, 15, 5, 31, 5)
+            return core.new_gladiator(75, 15, 5, 31, 10)
         elif choice.lower() == 'jester':
-            return core.new_gladiator(25, 0, 1, 101, 10)
+            return core.new_gladiator(25, 0, 1, 101, 20)
         else:
             incorrect = incorrect + 1
             print('\nChoose A Class {}!!!'.format(name.capitalize()))
@@ -80,8 +80,8 @@ def battle(attacker, attacker_stats, defender, defender_stats):
             if core.cast(attacker, attacker_stats, defender,
                          defender_stats) == None:
                 print('You Do Not Posses The Magic!!!')
-            else:
-                core.cast(attacker, attacker_stats, defender, defender_stats)
+            elif core.cast(attacker, attacker_stats, defender,
+                           defender_stats) == True:
                 break
         if action.lower() == 'pass':
             print('\nYou\'ve chosen to show mercy upon your enemy.\n')
