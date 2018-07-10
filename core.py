@@ -36,7 +36,7 @@ def heal(gladiator):
     if gladiator['Rage'] >= 10:
         if gladiator['Health'] == 100:
             return None
-        if gladiator['Health'] in range(96, 99):
+        if gladiator['Health'] in range(96, 100):
             gladiator['Rage'] = gladiator['Rage'] - 10
             gladiator['Health'] = 100
             return gladiator
