@@ -1,32 +1,29 @@
 import core
 
 
+def destroyer(incorrect, name):
+    if incorrect == 5:
+        print('STOP THAT AND CHOOSE!!!')
+    if incorrect == 10:
+        print('YOU DO NOT WANT THIS!!!')
+    if incorrect >= 15:
+        print(
+            '{} Has Summoned Forth The Destroyer of Worlds to Fullfill His Blood Lust!!!'.
+            format(name.capitalize()))
+        print(
+            '\nThe arena, along with the gladiators, was destroyed in the mayham and carnage that was unleashed... \n\nNo winners could be found.'
+        )
+        exit()
+
+
 def classes(name):
     incorrect = 0
     while True:
-        if incorrect == 5:
-            print('STOP THAT AND CHOOSE!!!')
-        if incorrect == 10:
-            print('YOU DO NOT WANT THIS!!!')
-        if incorrect >= 15:
-            print(
-                '{} Has Summoned Forth The Destroyer of Worlds to Fullfill His Blood Lust!!!'.
-                format(name.capitalize()))
-            return core.new_gladiator(1000, 1000, 1000, 1000)
+        destroyer(incorrect, name)
         choice = input(
             '\nWhat class will you choose {}?\n\n>>> Berserker\nPros: High Attack and Rage \nCons: Low Health and Chance To Graze\n\n>>> Monk\nPros: High Health and Precision Attacks \nCons: Low Rage and Weak Attacks\n\n>>> Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> Jester\nPros: Chance To Kill In Hit \nCons: Very Weak Health and Low Rage\n'.
             format(name.capitalize()))
-        if choice.lower() == 'berserker':
-            return core.new_gladiator(65, 50, 1, 51)
-        elif choice.lower() == 'monk':
-            return core.new_gladiator(100, 0, 15, 15)
-        elif choice.lower() == 'warrior':
-            return core.new_gladiator(75, 15, 5, 31)
-        elif choice.lower() == 'jester':
-            return core.new_gladiator(25, 0, 1, 101)
-        else:
-            incorrect = incorrect + 1
-            print('\nChoose A Class {}!!!'.format(name.capitalize()))
+        core.gladiator_classes(choice)
 
 
 def intro():

@@ -48,6 +48,20 @@ def heal(gladiator):
         return None
 
 
+def gladiator_classes(choice):
+    if choice.lower() == 'berserker':
+        return new_gladiator(65, 50, 1, 51)
+    elif choice.lower() == 'monk':
+        return new_gladiator(100, 0, 15, 15)
+    elif choice.lower() == 'warrior':
+        return new_gladiator(75, 15, 5, 31)
+    elif choice.lower() == 'jester':
+        return new_gladiator(25, 0, 1, 101)
+    else:
+        incorrect = incorrect + 1
+        print('\nChoose A Class {}!!!'.format(name.capitalize()))
+
+
 def is_dead(gladiator):
     if gladiator['Health'] <= 0:
         return True

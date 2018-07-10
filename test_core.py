@@ -76,3 +76,10 @@ def test_is_dead():
         'Damage Low': 5,
         'Damage High': 25
     }) == False
+
+
+def test_gladiator_classes():
+    assert gladiator_classes('berserker') == new_gladiator(65, 50, 1, 51)
+    assert gladiator_classes('monk') == new_gladiator(100, 0, 15, 15)
+    assert gladiator_classes('warrior') == new_gladiator(75, 15, 5, 31)
+    assert gladiator_classes('jester') == new_gladiator(25, 0, 1, 101)
