@@ -63,6 +63,9 @@ def check_the_dead(attacker, attacker_stats, defender, defender_stats):
 
 
 def battle(attacker, attacker_stats, defender, defender_stats):
+    if core.is_dead(attacker_stats) == True:
+        print('\n{} Is Victorious!!!'.format(defender))
+        exit()
     while True:
         shell.display_stats(attacker, attacker_stats)
         shell.display_stats(defender, defender_stats)
@@ -99,7 +102,9 @@ def battle(attacker, attacker_stats, defender, defender_stats):
 
 
 def enemy_battle(enemy_name, enemy_stats, name, player_stats):
-    if enemy_stats['Health'] < 50:
+    if check_the_dead(name, player_stats, enemy_name, enemy_stats) == True:
+        return True
+    elif enemy_stats['Health'] < 50:
         if enemy_stats['Rage'] >= 10:
             core.heal(enemy_stats)
             print('\n{} healed himself.'.format(enemy_name))
@@ -120,7 +125,11 @@ def enemy_battle(enemy_name, enemy_stats, name, player_stats):
 
 def rounds(name, player_stats, enemy_name, enemy_stats):
     while True:
-        if check_the_dead(name, player_stats, enemy_name, enemy_stats) == True:
+        if battle(name, player_stats, enemy_name, enemy_stats) == True:
+            enemy_name, enemy_stats = enemy_spawner()
+            rounds(name, player_stats, enemy_name, enemy_stats)
+
+        if enemy_battle(enemy_name, enemy_stats, name, player_stats) == True:
             enemy_name, enemy_stats = enemy_spawner()
             rounds(name, player_stats, enemy_name, enemy_stats)
 
