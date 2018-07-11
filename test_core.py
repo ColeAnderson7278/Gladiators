@@ -79,3 +79,33 @@ def test_is_dead():
         'Damage Low': 5,
         'Damage High': 25
     }) == False
+
+
+def test_cast():
+    assert cast('Joe', {
+        'Health': 100,
+        'Rage': 0,
+        'Damage Low': 5,
+        'Damage High': 25,
+        'Magic': 5
+    }, 'Bill', {
+        'Health': 100,
+        'Rage': 0,
+        'Damage Low': 5,
+        'Damage High': 25,
+        'Magic': 5
+    }) == True
+
+    assert cast('Joe', {
+        'Health': 100,
+        'Rage': 0,
+        'Damage Low': 5,
+        'Damage High': 25,
+        'Magic': 0
+    }, 'Bill', {
+        'Health': 100,
+        'Rage': 0,
+        'Damage Low': 5,
+        'Damage High': 25,
+        'Magic': 0
+    }) == None
