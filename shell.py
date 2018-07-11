@@ -1,6 +1,7 @@
 import core
 import single_player
 
+
 def destroyer(incorrect, name):
     if incorrect == 5:
         print('STOP THAT AND CHOOSE!!!')
@@ -38,7 +39,7 @@ def classes(name):
 
 def intro():
     name_1 = input(
-        'Welcome to the colosseum! Warrior one, what is your name? ')
+        '\nWelcome to the colosseum! Warrior one, what is your name? ')
     name_2 = input('\nWarrior two, what shall the crowds shout? ')
     stats_1 = classes(name_1)
     stats_2 = classes(name_2)
@@ -98,12 +99,13 @@ def battle(attacker, attacker_stats, defender, defender_stats):
 
 def single_multi():
     choice = input('Would you like to play? Single or Coop?\n')
-    if choice.lower == 'coop':
+    if choice.lower() == 'coop':
         (name_1, stats_1, name_2, stats_2) = intro()
         while True:
             battle(name_1, stats_1, name_2, stats_2)
             battle(name_2, stats_2, name_1, stats_1)
-    if choice.lower == 'single':
+    if choice.lower() == 'single':
+        single_player.test()
 
 
 def main():

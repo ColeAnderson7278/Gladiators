@@ -118,7 +118,7 @@ def enemy_battle(enemy_name, enemy_stats, name, player_stats):
             print('\n{} attacked you.'.format(enemy_name))
 
 
-def main():
+def final():
     name = begin()
     player_stats = who_are_you(name)
     enemy_name, enemy_stats = enemy_spawner()
@@ -126,6 +126,10 @@ def main():
         battle(name, player_stats, enemy_name, enemy_stats)
         enemy_battle(enemy_name, enemy_stats, name, player_stats)
     print('No')
+
+
+def main():
+    final()
 
 
 if __name__ == '__main__':
