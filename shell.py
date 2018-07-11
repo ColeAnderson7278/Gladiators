@@ -12,7 +12,7 @@ def destroyer(incorrect, name):
             '{} Has Summoned Forth The Destroyer of Worlds to Fullfill His Blood Lust!!!'.
             format(name.strip().capitalize()))
         print(
-            '\nThe arena, along with the gladiators, was destroyed in the mayham and carnage that was unleashed... \n\nNo winners could be found.'
+            '\nThe arena, along with the gladiators, was destroyed in the mayhem and carnage that was unleashed... \n\nNo winners could be found.'
         )
         exit()
 
