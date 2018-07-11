@@ -10,7 +10,7 @@ def destroyer(incorrect, name):
     if incorrect >= 15:
         print(
             '{} Has Summoned Forth The Destroyer of Worlds to Fullfill His Blood Lust!!!'.
-            format(name.capitalize()))
+            format(name.strip().capitalize()))
         print(
             '\nThe arena, along with the gladiators, was destroyed in the mayham and carnage that was unleashed... \n\nNo winners could be found.'
         )
@@ -23,7 +23,7 @@ def classes(name):
         destroyer(incorrect, name)
         choice = input(
             '\n>>> Berserker\nPros: High Attack and Rage \nCons: Chance To Graze and No Magic\n\n>>> Monk\nPros: High Health,Precision Attacks, and High Magic\nCons: Low Rage and Weak Attacks\n\n>>> Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> Jester\nPros: Chance To Kill In A Single Blow and Fair Magic \nCons: Very Weak Health and Low Rage\n\nWhat class will you choose {}?\n'.
-            format(name.capitalize()))
+            format(name.strip().capitalize()))
         if choice.lower() == 'berserker':
             return core.new_gladiator(75, 50, 1, 51, 0)
         elif choice.lower() == 'monk':
@@ -34,7 +34,7 @@ def classes(name):
             return core.new_gladiator(25, 0, 1, 101, 20)
         else:
             incorrect = incorrect + 1
-            print('\nChoose A Class {}!!!'.format(name.capitalize()))
+            print('\nChoose A Class {}!!!'.format(name.strip().capitalize()))
 
 
 def intro():
@@ -48,15 +48,16 @@ def intro():
 
 def display_stats(name, stats):
     print('\n>>> {} - Health:{} Rage:{} Magic:{}'.format(
-        name.capitalize(), stats['Health'], stats['Rage'], stats['Magic']))
+        name.strip().capitalize(), stats['Health'], stats['Rage'],
+        stats['Magic']))
 
 
 def check_the_dead(attacker, attacker_stats, defender, defender_stats):
     if core.is_dead(attacker_stats) == True:
-        print('\n{} Is Victorious!!!'.format(defender.capitalize()))
+        print('\n{} Is Victorious!!!'.format(defender.strip().capitalize()))
         exit()
     if core.is_dead(defender_stats) == True:
-        print('\n{} Is Victorious!!!'.format(attacker.capitalize()))
+        print('\n{} Is Victorious!!!'.format(attacker.strip().capitalize()))
         exit()
 
 
@@ -69,7 +70,7 @@ def battle(attacker, attacker_stats, defender, defender_stats):
         print('\n----------------------------------------')
         action = input(
             '\n{},what would you like to do?\n>>> Attack\n>>> Heal\n>>> Cast\n>>> Pass\n>>> Quit\n'.
-            format(attacker.capitalize()))
+            format(attacker.strip().capitalize()))
         if action.lower() == 'attack':
             core.attack(attacker_stats, defender_stats)
             break
@@ -93,7 +94,7 @@ def battle(attacker, attacker_stats, defender, defender_stats):
             print(
                 '\nYou lay down your weapons and ask for mercy from your opponent.\n'
             )
-            print('{} Is Victorious!!!'.format(defender.capitalize()))
+            print('{} Is Victorious!!!'.format(defender.strip().capitalize()))
             exit()
         else:
             print('\nIncorrect Input!!!')

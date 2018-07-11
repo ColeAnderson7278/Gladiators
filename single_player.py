@@ -7,14 +7,14 @@ def begin():
     name = input(
         '\nYou awaken to hot sand against your skin, the sun barring upon you, \nand a thousand voices shouting your name.\n\nWhat are they shouting? '
     )
-    return name.capitalize()
+    return name.strip().capitalize()
 
 
 def who_are_you(name):
     while True:
         choice = input(
             '\n>>> Berserker\nPros: High Attack and Rage \nCons: Chance To Graze and No Magic\n\n>>> Monk\nPros: High Health,Precision Attacks, and High Magic\nCons: Low Rage and Weak Attacks\n\n>>> Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> Jester\nPros: Chance To Kill In A Single Blow and Fair Magic \nCons: Very Weak Health and Low Rage\n\nAs your mind clears you begin to remember your past. What are you {}?\n'.
-            format(name.capitalize()))
+            format(name.strip().capitalize()))
         if choice.lower() == 'berserker':
             return core.new_gladiator(75, 50, 1, 51, 0)
         elif choice.lower() == 'monk':
@@ -24,7 +24,7 @@ def who_are_you(name):
         elif choice.lower() == 'jester':
             return core.new_gladiator(25, 0, 1, 101, 20)
         else:
-            print('\nChoose A Class {}!!!'.format(name.capitalize()))
+            print('\nChoose A Class {}!!!'.format(name.strip().capitalize()))
 
 
 def stat_printer(stats):
@@ -59,7 +59,7 @@ def check_the_dead(attacker, attacker_stats, defender, defender_stats):
         print('\n{} Is Victorious!!!'.format(defender))
         exit()
     if core.is_dead(defender_stats) == True:
-        print('\n{} Is Victorious!!!'.format(attacker.capitalize()))
+        print('\n{} Is Victorious!!!'.format(attacker.strip().capitalize()))
         return True
 
 
@@ -74,7 +74,7 @@ def battle(attacker, attacker_stats, defender, defender_stats):
         print('\n------------------------------------------------------')
         action = input(
             '\n{},what would you like to do?\n>>> Attack\n>>> Heal\n>>> Cast\n>>> Pass\n>>> Quit\n'.
-            format(attacker.capitalize()))
+            format(attacker.strip().capitalize()))
         if action.lower() == 'attack':
             core.attack(attacker_stats, defender_stats)
             break
