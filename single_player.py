@@ -13,7 +13,7 @@ def begin():
 def who_are_you(name):
     while True:
         choice = input(
-            '\nAs your mind clears you begin to remember your past. What are you {}?\n\n>>> Berserker\nPros: High Attack and Rage \nCons: Chance To Graze and No Magic\n\n>>> Monk\nPros: High Health,Precision Attacks, and High Magic\nCons: Low Rage and Weak Attacks\n\n>>> Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> Jester\nPros: Chance To Kill In A Single Blow and Fair Magic \nCons: Very Weak Health and Low Rage\n'.
+            '\n>>> Berserker\nPros: High Attack and Rage \nCons: Chance To Graze and No Magic\n\n>>> Monk\nPros: High Health,Precision Attacks, and High Magic\nCons: Low Rage and Weak Attacks\n\n>>> Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> Jester\nPros: Chance To Kill In A Single Blow and Fair Magic \nCons: Very Weak Health and Low Rage\n\nAs your mind clears you begin to remember your past. What are you {}?\n'.
             format(name.capitalize()))
         if choice.lower() == 'berserker':
             return core.new_gladiator(75, 50, 1, 51, 0)
@@ -35,6 +35,7 @@ def stat_printer(stats):
 
 
 def enemy_spawner():
+    print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
     print(
         choice([
             '\nFocus warrior. They will come swift and strong.\n',
@@ -67,8 +68,10 @@ def battle(attacker, attacker_stats, defender, defender_stats):
         print('\n{} Is Victorious!!!'.format(defender))
         exit()
     while True:
+        print('------------------------------------------------------')
         shell.display_stats(attacker, attacker_stats)
         shell.display_stats(defender, defender_stats)
+        print('\n------------------------------------------------------')
         action = input(
             '\n{},what would you like to do?\n>>> Attack\n>>> Heal\n>>> Cast\n>>> Pass\n>>> Quit\n'.
             format(attacker.capitalize()))

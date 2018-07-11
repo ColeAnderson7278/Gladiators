@@ -63,8 +63,10 @@ def check_the_dead(attacker, attacker_stats, defender, defender_stats):
 def battle(attacker, attacker_stats, defender, defender_stats):
     check_the_dead(attacker, attacker_stats, defender, defender_stats)
     while True:
+        print('----------------------------------------')
         display_stats(attacker, attacker_stats)
         display_stats(defender, defender_stats)
+        print('\n----------------------------------------')
         action = input(
             '\n{},what would you like to do?\n>>> Attack\n>>> Heal\n>>> Cast\n>>> Pass\n>>> Quit\n'.
             format(attacker.capitalize()))
@@ -98,14 +100,17 @@ def battle(attacker, attacker_stats, defender, defender_stats):
 
 
 def single_multi():
-    choice = input('Would you like to play? Single or Coop?\n')
-    if choice.lower() == 'coop':
-        (name_1, stats_1, name_2, stats_2) = intro()
-        while True:
-            battle(name_1, stats_1, name_2, stats_2)
-            battle(name_2, stats_2, name_1, stats_1)
-    if choice.lower() == 'single':
-        single_player.final()
+    while True:
+        choice = input('Would you like to play? Solo or Coop?\n')
+        if choice.lower() == 'coop':
+            (name_1, stats_1, name_2, stats_2) = intro()
+            while True:
+                battle(name_1, stats_1, name_2, stats_2)
+                battle(name_2, stats_2, name_1, stats_1)
+        if choice.lower() == 'solo':
+            single_player.final()
+        else:
+            print('\nIncorrect Response\n')
 
 
 def main():
