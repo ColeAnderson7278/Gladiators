@@ -5,7 +5,7 @@ from random import *
 
 def begin():
     name = input(
-        'You awaken to hot sand against your skin, the sun barring upon you, \nand a thousand voices shouting your name.\n\nWhat are they shouting? '
+        '\nYou awaken to hot sand against your skin, the sun barring upon you, \nand a thousand voices shouting your name.\n\nWhat are they shouting? '
     )
     return name.capitalize()
 
@@ -56,10 +56,10 @@ def enemy_spawner():
 def check_the_dead(attacker, attacker_stats, defender, defender_stats):
     if core.is_dead(attacker_stats) == True:
         print('\n{} Is Victorious!!!'.format(defender))
-        return True
+        exit()
     if core.is_dead(defender_stats) == True:
         print('\n{} Is Victorious!!!'.format(attacker.capitalize()))
-        return
+        return True
 
 
 def battle(attacker, attacker_stats, defender, defender_stats):
@@ -118,14 +118,22 @@ def enemy_battle(enemy_name, enemy_stats, name, player_stats):
             print('\n{} attacked you.'.format(enemy_name))
 
 
+def rounds(name, player_stats, enemy_name, enemy_stats):
+    while True:
+        if check_the_dead(name, player_stats, enemy_name, enemy_stats) == True:
+            enemy_name, enemy_stats = enemy_spawner()
+            rounds(name, player_stats, enemy_name, enemy_stats)
+
+        else:
+            battle(name, player_stats, enemy_name, enemy_stats)
+            enemy_battle(enemy_name, enemy_stats, name, player_stats)
+
+
 def final():
     name = begin()
     player_stats = who_are_you(name)
     enemy_name, enemy_stats = enemy_spawner()
-    while check_the_dead(name, player_stats, enemy_name, enemy_stats) != True:
-        battle(name, player_stats, enemy_name, enemy_stats)
-        enemy_battle(enemy_name, enemy_stats, name, player_stats)
-    print('No')
+    rounds(name, player_stats, enemy_name, enemy_stats)
 
 
 def main():

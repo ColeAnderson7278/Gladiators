@@ -105,7 +105,7 @@ def single_multi():
             battle(name_1, stats_1, name_2, stats_2)
             battle(name_2, stats_2, name_1, stats_1)
     if choice.lower() == 'single':
-        single_player.test()
+        single_player.final()
 
 
 def main():
