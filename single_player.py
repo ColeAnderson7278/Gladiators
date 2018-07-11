@@ -47,7 +47,7 @@ def enemy_spawner():
     ])
     print('{} has entered the arena.'.format(enemy_name))
     enemy_stats = core.new_gladiator(
-        randint(1, 2), randint(0, 30), randint(0, 15), randint(15, 50),
+        randint(50, 100), randint(0, 30), randint(0, 15), randint(15, 50),
         randint(0, 30))
     stat_printer(enemy_stats)
     return enemy_name, enemy_stats
