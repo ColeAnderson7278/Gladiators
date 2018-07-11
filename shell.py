@@ -1,5 +1,5 @@
 import core
-
+import single_player
 
 def destroyer(incorrect, name):
     if incorrect == 5:
@@ -96,11 +96,18 @@ def battle(attacker, attacker_stats, defender, defender_stats):
             print('\nIncorrect Input!!!')
 
 
+def single_multi():
+    choice = input('Would you like to play? Single or Coop?\n')
+    if choice.lower == 'coop':
+        (name_1, stats_1, name_2, stats_2) = intro()
+        while True:
+            battle(name_1, stats_1, name_2, stats_2)
+            battle(name_2, stats_2, name_1, stats_1)
+    if choice.lower == 'single':
+
+
 def main():
-    (name_1, stats_1, name_2, stats_2) = intro()
-    while True:
-        battle(name_1, stats_1, name_2, stats_2)
-        battle(name_2, stats_2, name_1, stats_1)
+    single_multi()
 
 
 if __name__ == '__main__':
