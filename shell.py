@@ -22,15 +22,15 @@ def classes(name):
     while True:
         destroyer(incorrect, name)
         choice = input(
-            '\n>>> Berserker\nPros: High Attack and Rage \nCons: Chance To Graze and No Magic\n\n>>> Monk\nPros: High Health,Precision Attacks, and High Magic\nCons: Low Rage and Weak Attacks\n\n>>> Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> Jester\nPros: Chance To Kill In A Single Blow and Fair Magic \nCons: Very Weak Health and Low Rage\n\nWhat class will you choose {}?\n'.
+            '\n>>> 1) Berserker\nPros: High Attack and Rage \nCons: Chance To Graze and No Magic\n\n>>> 2) Monk\nPros: High Health,Precision Attacks, and High Magic\nCons: Low Rage and Weak Attacks\n\n>>> 3) Warrior\nPros: Well Rounded \nCons: No High Abilities\n\n>>> 4) Jester\nPros: Chance To Kill In A Single Blow and Fair Magic \nCons: Very Weak Health and Low Rage\n\nWhat class will you choose {}?\n'.
             format(name.strip().capitalize()))
-        if choice.lower() == 'berserker':
+        if choice.lower() == '1':
             return core.new_gladiator(75, 50, 1, 51, 0)
-        elif choice.lower() == 'monk':
+        elif choice.lower() == '2':
             return core.new_gladiator(100, 0, 15, 15, 30)
-        elif choice.lower() == 'warrior':
+        elif choice.lower() == '3':
             return core.new_gladiator(75, 15, 5, 31, 10)
-        elif choice.lower() == 'jester':
+        elif choice.lower() == '4':
             return core.new_gladiator(25, 0, 1, 101, 20)
         else:
             incorrect = incorrect + 1
@@ -69,28 +69,28 @@ def battle(attacker, attacker_stats, defender, defender_stats):
         display_stats(defender, defender_stats)
         print('\n----------------------------------------')
         action = input(
-            '\n{},what would you like to do?\n>>> Attack\n>>> Heal\n>>> Cast\n>>> Pass\n>>> Quit\n'.
+            '\n{},what would you like to do?\n>>> 1) Attack\n>>> 2) Heal\n>>> 3) Cast\n>>> 4) Pass\n>>> 5) Quit\n'.
             format(attacker.strip().capitalize()))
-        if action.lower() == 'attack':
+        if action.lower() == '1':
             core.attack(attacker_stats, defender_stats)
             break
-        if action.lower() == 'heal':
+        if action.lower() == '2':
             if core.heal(attacker_stats) == None:
                 print('\nYou Can Not Complete That Action!!!')
             else:
                 core.heal(attacker_stats)
                 break
-        if action.lower() == 'cast':
+        if action.lower() == '3':
             if core.cast(attacker, attacker_stats, defender,
                          defender_stats) == None:
                 print('You Do Not Posses The Magic!!!')
             elif core.cast(attacker, attacker_stats, defender,
                            defender_stats) == True:
                 break
-        if action.lower() == 'pass':
+        if action.lower() == '4':
             print('\nYou\'ve chosen to show mercy upon your enemy.\n')
             break
-        if action.lower() == 'quit':
+        if action.lower() == '5':
             print(
                 '\nYou lay down your weapons and ask for mercy from your opponent.\n'
             )
@@ -102,13 +102,15 @@ def battle(attacker, attacker_stats, defender, defender_stats):
 
 def single_multi():
     while True:
-        choice = input('Would you like to play? Solo or Coop?\n')
-        if choice.lower() == 'coop':
+        print('Welcome to Gladiators!!!')
+        choice = input(
+            'Which gamemode do you choose?\n1) Single Player\n2) Two Player\n')
+        if choice.lower() == '2':
             (name_1, stats_1, name_2, stats_2) = intro()
             while True:
                 battle(name_1, stats_1, name_2, stats_2)
                 battle(name_2, stats_2, name_1, stats_1)
-        if choice.lower() == 'solo':
+        if choice.lower() == '1':
             single_player.final()
         else:
             print('\nIncorrect Response\n')
