@@ -73,7 +73,7 @@ def battle(attacker, attacker_stats, defender, defender_stats):
         shell.display_stats(defender, defender_stats)
         print('\n------------------------------------------------------')
         action = input(
-            '\n{},what would you like to do?\n>>> 1) Attack\n>>> 2) Heal\n>>> 3) Cast\n>>> 4) Pass\n>>> 5) Quit\n'.
+            '\n{},what would you like to do?\n>>> 1) Attack(+15 Rage)\n>>> 2) Heal(-10 Rage, +10 Health)\n>>> 3) Cast(-10 Magic,-10 Enemy Health,+10 Health)\n>>> 4) Pass(+15 Magic)\n>>> 5) Quit\n'.
             format(attacker.capitalize().strip()))
         if action.lower() == '1':
             core.attack(attacker_stats, defender_stats)
@@ -93,6 +93,7 @@ def battle(attacker, attacker_stats, defender, defender_stats):
                 break
         if action.lower() == '4':
             print('\nYou\'ve chosen to show mercy upon your enemy.\n')
+            attacker_stats['Magic'] = attacker_stats['Magic'] + 15
             break
         if action.lower() == '5':
             print(
