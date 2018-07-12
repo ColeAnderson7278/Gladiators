@@ -44,7 +44,7 @@ def enemy_spawner():
         ]))
     enemy_name = choice([
         'Bobby the Barb', 'Kyina the Relentless', 'Tim the Toolman',
-        'Merciful Mort', 'Mega Buttercup', 'Tiappa the Dancer', 'Meat'
+        'Merciful Mort', 'Mega Buttercup', 'Tiappa the Dancer', 'Meat', 'Lobo'
     ])
     print('{} has entered the arena.'.format(enemy_name))
     enemy_stats = core.new_gladiator(
