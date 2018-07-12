@@ -67,42 +67,45 @@ def battle(attacker, attacker_stats, defender, defender_stats):
     if core.is_dead(attacker_stats) == True:
         print('\n{} Is Victorious!!!'.format(defender))
         exit()
-    while True:
-        print('------------------------------------------------------')
-        shell.display_stats(attacker, attacker_stats)
-        shell.display_stats(defender, defender_stats)
-        print('\n------------------------------------------------------')
-        action = input(
-            '\n{},what would you like to do?\n>>> 1) Attack(+15 Rage)\n>>> 2) Heal(-10 Rage, +10 Health)\n>>> 3) Cast(-10 Magic,-10 Enemy Health,+10 Health)\n>>> 4) Pass(+15 Magic)\n>>> 5) Quit\n'.
-            format(attacker.capitalize().strip()))
-        if action.lower() == '1':
-            core.attack(attacker_stats, defender_stats)
-            break
-        if action.lower() == '2':
-            if core.heal(attacker_stats) == None:
-                print('\nYou Can Not Complete That Action!!!')
+    if core.is_dead(defender_stats) == True:
+        return None
+    else:
+        while True:
+            print('------------------------------------------------------')
+            shell.display_stats(attacker, attacker_stats)
+            shell.display_stats(defender, defender_stats)
+            print('\n------------------------------------------------------')
+            action = input(
+                '\n{},what would you like to do?\n>>> 1) Attack(+15 Rage)\n>>> 2) Heal(-10 Rage, +10 Health)\n>>> 3) Cast(-10 Magic,-10 Enemy Health,+10 Health)\n>>> 4) Pass(+15 Magic)\n>>> 5) Quit\n'.
+                format(attacker.capitalize().strip()))
+            if action.lower() == '1':
+                core.attack(attacker_stats, defender_stats)
+                break
+            if action.lower() == '2':
+                if core.heal(attacker_stats) == None:
+                    print('\nYou Can Not Complete That Action!!!')
+                else:
+                    core.heal(attacker_stats)
+                    break
+            if action.lower() == '3':
+                if core.cast(attacker, attacker_stats, defender,
+                             defender_stats) == None:
+                    print('You Do Not Posses The Magic!!!')
+                elif core.cast(attacker, attacker_stats, defender,
+                               defender_stats) == True:
+                    break
+            if action.lower() == '4':
+                print('\nYou\'ve chosen to show mercy upon your enemy.\n')
+                attacker_stats['Magic'] = attacker_stats['Magic'] + 15
+                break
+            if action.lower() == '5':
+                print(
+                    '\nYou lay down your weapons and ask for mercy from your opponent.\n'
+                )
+                print('{} Is Victorious!!!'.format(defender))
+                exit()
             else:
-                core.heal(attacker_stats)
-                break
-        if action.lower() == '3':
-            if core.cast(attacker, attacker_stats, defender,
-                         defender_stats) == None:
-                print('You Do Not Posses The Magic!!!')
-            elif core.cast(attacker, attacker_stats, defender,
-                           defender_stats) == True:
-                break
-        if action.lower() == '4':
-            print('\nYou\'ve chosen to show mercy upon your enemy.\n')
-            attacker_stats['Magic'] = attacker_stats['Magic'] + 15
-            break
-        if action.lower() == '5':
-            print(
-                '\nYou lay down your weapons and ask for mercy from your opponent.\n'
-            )
-            print('{} Is Victorious!!!'.format(defender))
-            exit()
-        else:
-            print('\nIncorrect Input!!!')
+                print('\nIncorrect Input!!!')
 
 
 def enemy_battle(enemy_name, enemy_stats, name, player_stats):
